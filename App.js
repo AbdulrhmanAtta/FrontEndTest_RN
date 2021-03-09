@@ -8,10 +8,12 @@ import * as React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity, Image, FlatList, Dimensions, SafeAreaView,ScrollView} from 'react-native';
 
 import Header from './src/components/Header';
-import TabNavigation, {createAppContainer} from './src/components/TabNavigation';
 import Icon from 'react-native-vector-icons/Ionicons';
 import axios from 'axios';
-// 9.	Setup the React Navigation ( navigation bar and Tabs)
+import {createAppContainer} from 'react-navigation';
+import {createMaterialBottomTabNavigator} from 'react-navigation-material-bottom-tabs';
+
+
 
 
 const WIDTH = Dimensions.get('window').width
@@ -23,8 +25,7 @@ const api = axios.create({
   timeout: 1000,
   headers: {'Custom-Header': 'items'}
 })
-
- export default class App extends React.Component {
+ class App extends React.Component {
 
   state = {
     items: []
@@ -162,6 +163,109 @@ headerText:{
 });
 
 
+class ProfileScreen extends React.Component {
+  render() {
+    return (
+      <View style={styles.container}>
+        <Text>ProfileScreen</Text>
+      </View>
+    )
+  }
+}
+
+class HistoryScreen extends React.Component {
+  render() {
+    return (
+      <View style={styles.container}>
+        <Text>HistoryScreen</Text>
+      </View>
+    )
+  }
+}
+
+class CartScreen extends React.Component {
+  render() {
+    return (
+      <View style={styles.container}>
+        <Text>CartScreen</Text>
+      </View>
+    )
+  }
+}
+class CommentScreen extends React.Component {
+    render() {
+      return (
+        <View style={styles.container}>
+          <Text>CommentScreen</Text>
+        </View>
+      )
+    }
+  }
+
+  // 9.	Setup the React Navigation ( navigation bar and Tabs)
+
+const TabNavigator = createMaterialBottomTabNavigator(
+  {
+    App: {
+      screen: App,
+      navigationOptions: {
+        tabBarIcon: ({ tintColor }) => (
+          <View>
+            <Icon style={[{color: tintColor}]} size={25} name={'ios-home'} />
+          </View>
+        ),
+      }
+    },
+    Profile: {
+      screen: ProfileScreen,
+      navigationOptions: {
+        tabBarIcon: ({ tintColor }) => (
+          <View>
+            <Icon style={[{color: tintColor}]} size={25} name={'ios-person'} />
+          </View>
+        ),
+      } 
+    },
+    History: {
+      screen: HistoryScreen,
+      navigationOptions: {
+        tabBarIcon: ({ tintColor }) => (
+          <View>
+            <Icon style={[{color: tintColor}]} size={25} name={'ios-images'} />
+          </View>
+        ),
+      } 
+    },
+    Cart: {
+      screen: CartScreen,
+      navigationOptions: {
+        tabBarIcon: ({ tintColor }) => (
+          <View>
+            <Icon style={[{color: tintColor}]} size={25} name={'ios-cart'} />
+          </View>
+        ),
+      } 
+    },
+    Comment: {
+        screen: CommentScreen,
+        navigationOptions: {
+          tabBarIcon: ({ tintColor }) => (
+            <View>
+              <Icon style={[{color: tintColor}]} size={25} name={'ios-person'} />
+            </View>
+          ),
+        } 
+      },
+  },
+  {
+    initialRouteName: 'App',
+    activeColor: '#ffffff',
+    inactiveColor: '#ffffff',
+    barStyle: { backgroundColor: 'orange' },
+  }
+);
+
+export default createAppContainer(TabNavigator);
 
 
 

@@ -45,19 +45,11 @@ class ProfileScreen extends React.Component {
       }
     }
   
-    class HomeScreen extends React.Component {
-      render() {
-        return (
-          <View style={styles.container}>
-            <Text>CommentScreen</Text>
-          </View>
-        )
-      }
-    }
+    
   
   const TabNavigator = createMaterialBottomTabNavigator(
     {
-      Home: {
+      App: {
         screen: App,
         navigationOptions: {
           tabBarIcon: ({ tintColor }) => (
@@ -121,7 +113,7 @@ class ProfileScreen extends React.Component {
         },
     },
     {
-      initialRouteName: 'Home',
+      initialRouteName: 'App',
       activeColor: '#ffffff',
       inactiveColor: '#ffffff',
       barStyle: { backgroundColor: 'orange' },
